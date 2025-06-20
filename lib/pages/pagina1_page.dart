@@ -39,11 +39,30 @@ class Pagina1Page extends StatelessWidget {
         //   child: child,
         // );
 
-        return ScaleTransition(
-            scale: Tween(begin: 0.0, end: 1.0).animate(curvedAnimation),
-            child: child);
+        // return ScaleTransition(
+        //     scale: Tween(begin: 0.0, end: 1.0).animate(curvedAnimation),
+        //     child: child
+        // );
+
+        // return RotationTransition(
+        //   turns: Tween(begin: 0.0, end: 1.0).animate(curvedAnimation),
+        //   child: child,
+        // );
+
+        // return FadeTransition(
+        //   opacity: Tween(begin: 0.0, end: 1.0).animate(curvedAnimation),
+        //   child: child,
+        // );
+
+        return RotationTransition(
+          turns: Tween(begin: 0.9, end: 1.0).animate(curvedAnimation),
+          child: FadeTransition(
+            opacity: Tween(begin: 0.0, end: 1.0).animate(curvedAnimation),
+            child: child,
+          ),
+        );
       },
-      // transitionDuration: const Duration(milliseconds: 300),
+      transitionDuration: const Duration(seconds: 2),
     );
   }
 }
