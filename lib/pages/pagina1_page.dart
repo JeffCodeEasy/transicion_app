@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:transicion_app/pages/pagina2_page.dart';
 
 class Pagina1Page extends StatelessWidget {
   const Pagina1Page({super.key});
@@ -12,9 +13,33 @@ class Pagina1Page extends StatelessWidget {
         child: Text('Pagina 1'),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context, _crearRuta());
+        },
         child: const Icon(Icons.access_time),
       ),
+    );
+  }
+
+  Route _crearRuta() {
+    return PageRouteBuilder(
+      pageBuilder: (
+        context,
+        animation,
+        secondaryAnimation,
+      ) =>
+          const Pagina2Page(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        final curvedAnimation =
+            CurvedAnimation(parent: animation, curve: Curves.easeInOut);
+
+        return SlideTransition(
+          position: Tween(begin: const Offset(0.5, 1.0), end: Offset.zero)
+              .animate(curvedAnimation),
+          child: child,
+        );
+      },
+      // transitionDuration: Duration(seconds: 2),
     );
   }
 }
